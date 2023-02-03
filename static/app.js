@@ -22,9 +22,36 @@ function uploader(event) {
     .then(function(res){
         console.log('success');
         console.log(res); //return value from python
-        
+
         document.getElementById('done').style.display = 'block';
     });
 }
 
+function lister(event) {
+    console.log("hi");
+
+    let api = "/file_lister";
+    fetch(api,{
+        method:"POST",
+        // body: data,
+    })
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(res){
+        console.log('success');
+        console.log(res); //return value from python
+
+        let list = document.getElementById("file_list");
+     
+        res.forEach((item) => {
+            let li = document.createElement("li");
+            li.innerText = item;
+            list.appendChild(li);
+        });
+    });
+}
+
 document.getElementById("file_button").addEventListener("change" , uploader);
+
+document.getElementById("file_list_button").addEventListener("click" , lister);
