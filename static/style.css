@@ -2,6 +2,16 @@ body {background-color: rgba(170, 242, 231, 0.94);}
 
 h3 {color: rgba(239, 47, 172, 0.8);}
 
+#file_list_button {
+  border: 2px solid black;
+  padding: .2em .4em;
+  border-radius: .2em;
+  background-color: #c2de52f0;
+  transition: 1s;
+  cursor: pointer;
+  font-size: 3vh;
+}
+
 input[type=file]::file-selector-button {
   border: 2px solid black;
   padding: .2em .4em;
