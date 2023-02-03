@@ -16,15 +16,15 @@ def root(request:Request):
     context={'request':request}
     return templates.TemplateResponse('index.html',context)
 
-
 @app.post("/file_uploader")
 async def file_uploader(files: UploadFile = File(...) , name: str = Form(...)):
-
-    extension = name.split('.')[-1]
-
     print(name)
-
-    with open('static/user_uploads/input.'+ extension , 'wb') as buffer:
+    with open('static/user_uploads/' + name , 'wb') as buffer:
         shutil.copyfileobj(files.file, buffer)
-
     return "OK Done"
+
+@app.post("/file_lister")
+async def file_uploader():
+    dir_list = os.listdir('static/user_uploads')
+    print(dir_list)
+    return dir_list
